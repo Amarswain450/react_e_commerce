@@ -9,7 +9,7 @@ export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TO_CART:
             const find_index = state.carts.findIndex((ele) => ele.id === action.payload.id);
-            //console.log("find_index", find_index); 
+            console.log("find_index", find_index); 
             // /console.log(state.carts[find_index].qnty);
             // console.log(action.payload);
             if (find_index >= 0) {
