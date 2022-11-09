@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import "./style.css";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/actions/cartAction';
+import SearchBar from './SearchBar';
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Cards = () => {
 
   return (
     <Box className='container mt-3'>
-
+      <SearchBar />
       <Box className="row d-flex justify-content-center align-items-center">
         {
           data.map((element) => {
