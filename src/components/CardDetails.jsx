@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
-import { addToCart, removeToCart } from '../redux/actions/cartAction';
+import { addToCart, removeOneItemToCart, removeToCart } from '../redux/actions/cartAction';
 
 
 const CardsDetails = () => {
@@ -25,7 +25,7 @@ const CardsDetails = () => {
 
   useEffect(() => {
     compare();
-  }, [id]);
+  }, [id, compare]);
 
   const deleteFun = (id) => {
     dispatch(removeToCart(id));
@@ -34,6 +34,11 @@ const CardsDetails = () => {
 
   const addToItemFun = (ele) => {
     dispatch(addToCart(ele));
+  }
+
+  const deleteItemFun = (ele) => {
+    //console.log(",,,,,,");
+    dispatch(removeOneItemToCart(ele));
   }
 
   return (
@@ -61,7 +66,7 @@ const CardsDetails = () => {
                             <p> <strong>Dishes</strong>  : {ele.address}</p>
                             <p> <strong>Total</strong>  :₹  {ele.price * ele.qnty}</p>
                             <div className='mt-5 d-flex justify-content-between align-items-center' style={{ width: 100, cursor: "pointer", background: "#ddd", color: "#111" }}>
-                              <span style={{ fontSize: 24 }}>-</span>
+                              <span style={{ fontSize: 24 }} onClick={ele.qnty <=1 ? () => deleteFun(ele.id) : () => deleteItemFun(ele)}>-</span>
                               <span style={{ fontSize: 22 }}>{ele.qnty}</span>
                               <span style={{ fontSize: 24 }} onClick={() => addToItemFun(ele)}>+</span>
 
